@@ -1,24 +1,58 @@
 # README
+## usersテーブル
+| Column             | Type    | Option                    |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | unique: true, null: false |
+| encrypted_password | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| last_name_kana     | string  | null: false               |
+| birthday           | date    | null: false               |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Association
+- has_many : items
+- has_many : buyers
 
-Things you may want to cover:
+## itemsテーブル
+| Column               | Type       | Option            |
+| -------------------- | ---------- | ----------------- |
+| product_name         | string     | null: false       |
+| explanatory_text     | text       | null: false       |
+| category_id          | integer    | null: false       |
+| product_condition_id | integer    | null: false       |
+| delivery_fee_id      | integer    | null: false       |
+| shipment_id          | integer    | null: false       |
+| days_to_ship_id      | integer    | null: false       |
+| price                | integer    | null: false       |
+| user                 | references | foreign_key: true |
 
-* Ruby version
+### Association
+- belongs_to : user
+- has_one    : buyer
 
-* System dependencies
+### buyersテーブル
+| Column    | Type       | Option            |
+| --------- | ---------- | ----------------- |
+| user      | references | foreign_key: true |
+| item      | references | foreign_key: true |
 
-* Configuration
+### Association
+- belongs_to : user
+- belongs_to : item
+- has_one    : address
 
-* Database creation
+### addressテーブル
+| Column         | Type       | Option            |
+| -------------- | ---------- | ----------------- |
+| postal_code    | string     | null: false       |
+| shipment_id    | integer    | null: false       |
+| municipalities | string     | null: false       |
+| address        | string     | null: false       |
+| building       | string     |                   |
+| phone_number   | string     | null: false       |
+| buyer          | references | foreign_key: true |
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to : buyer
