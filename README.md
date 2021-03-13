@@ -9,9 +9,7 @@
 | last_name          | string  | null: false                    |
 | first_name_kana    | string  | null: false                    |
 | last_name_kana     | string  | null: false                    |
-| birth_year_id      | integer | null: false                    |
-| birth_month_id     | integer | null: false                    |
-| birth_day_id       | integer | null: false                    |
+| birthday           | date    | null: false                    |
 
 ### Association
 - has_many : items
@@ -60,12 +58,15 @@
 - has_one : address
 
 ### addressテーブル
-| Column    | Type       | Option            |
-| --------- | ---------- | ----------------- |
-| address   | text       | null: false       |
-| user      | references | foreign_key: true |
-| buyer     | references | foreign_key: true |
+| Column         | Type       | Option            |
+| -------------- | ---------- | ----------------- |
+| postal_code    | string     | null: false       |
+| prefectures_id | string     | null: false       |
+| municipalities | string     | null: false       |
+| address        | string     | null: false       |
+| building       | string     | null: false       |
+| phone_number   | integer    | null: false       |
+| buyer          | references | foreign_key: true |
 
 ### Association
-- belongs_to : users
 - belongs_to : buyers
