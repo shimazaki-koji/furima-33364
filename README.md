@@ -47,7 +47,7 @@
 | Column         | Type       | Option            |
 | -------------- | ---------- | ----------------- |
 | postal_code    | string     | null: false       |
-| shipment_id    | string     | null: false       |
+| shipment_id    | integer    | null: false       |
 | municipalities | string     | null: false       |
 | address        | string     | null: false       |
 | building       | string     |                   |
