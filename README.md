@@ -1,24 +1,62 @@
 # README
+## usersテーブル
+| Column     | Type   | Option      |
+| ---------- | ------ | ----------- |
+| email      | string | null: false |
+| password   | string | null: false |
+| name       | string | null: false |
+| profile    | text   | null: false |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Association
+- has_many : items
+- has_many : comments through : items
+- has_one  : buyers
+- has_one  : address
 
-Things you may want to cover:
+## itemsテーブル
+| Column       | Type       | Option      |
+| ------------ | ---------- | ----------- |
+| product_name | string     | null: false |
+| category     | text       | null: false |
+| price        | text       | null: false |
+| text         | text       | null: false |
+| image        |            |             |
+| user         | references |             |
 
-* Ruby version
+### Association
+- belongs_to : users
+- has_many : comments through : users
+- has_one  : buyers
 
-* System dependencies
+## commentsテーブル
+| Column    | Type       | Option      |
+| --------- | ---------- | ----------- |
+| text      | text       | null: false |
+| user      | references |             |
+| item      | references |             |
 
-* Configuration
+### Association
+- belongs_to : users
+- belongs_to : prototypes
 
-* Database creation
+### buyersテーブル
+| Column    | Type       | Option      |
+| --------- | ---------- | ----------- |
+| user      | references |             |
+| item      | references |             |
 
-* Database initialization
+### Association
+- belongs_to : users
+- belongs_to : items
+- has_one : address
 
-* How to run the test suite
+### addressテーブル
+| Column    | Type       | Option      |
+| --------- | ---------- | ----------- |
+| address   | text       | null: false |
+| user      | references |             |
+| buyer     | references |             |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to : users
+- belongs_to : buyers
