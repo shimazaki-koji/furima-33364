@@ -1,21 +1,19 @@
 # README
 ## usersテーブル
-| Column             | Type    | Option                         |
-| ------------------ | ------- | ------------------------------ |
-| nickname           | string  | null: false                    |
-| email              | string  | null: false, foreign_key: true |
-| encrypted_password | string  | null: false                    |
-| first_name         | string  | null: false                    |
-| last_name          | string  | null: false                    |
-| first_name_kana    | string  | null: false                    |
-| last_name_kana     | string  | null: false                    |
-| birthday           | date    | null: false                    |
+| Column             | Type    | Option      |
+| ------------------ | ------- | ----------- |
+| nickname           | string  | null: false |
+| email              | string  | null: false |
+| encrypted_password | string  | null: false |
+| first_name         | string  | null: false |
+| last_name          | string  | null: false |
+| first_name_kana    | string  | null: false |
+| last_name_kana     | string  | null: false |
+| birthday           | date    | null: false |
 
 ### Association
 - has_many : items
-- has_many : comments through : items
-- has_one  : buyers
-- has_one  : address
+- has_many : buyers
 
 ## itemsテーブル
 | Column               | Type       | Option            |
@@ -31,20 +29,8 @@
 | user                 | references | foreign_key: true |
 
 ### Association
-- belongs_to : users
-- has_many : comments through : users
+- belongs_to : user
 - has_one  : buyers
-
-## commentsテーブル
-| Column    | Type       | Option            |
-| --------- | ---------- | ----------------- |
-| text      | text       | null: false       |
-| user      | references | foreign_key: true |
-| item      | references | foreign_key: true |
-
-### Association
-- belongs_to : users
-- belongs_to : prototypes
 
 ### buyersテーブル
 | Column    | Type       | Option            |
@@ -53,8 +39,8 @@
 | item      | references | foreign_key: true |
 
 ### Association
-- belongs_to : users
-- belongs_to : items
+- belongs_to : user
+- belongs_to : item
 - has_one : address
 
 ### addressテーブル
@@ -64,9 +50,9 @@
 | prefectures_id | string     | null: false       |
 | municipalities | string     | null: false       |
 | address        | string     | null: false       |
-| building       | string     | null: false       |
+| building       | string     |                   |
 | phone_number   | integer    | null: false       |
-| buyer          | references | foreign_key: true |
+| buyer          | string     | foreign_key: true |
 
 ### Association
-- belongs_to : buyers
+- belongs_to : buyer
