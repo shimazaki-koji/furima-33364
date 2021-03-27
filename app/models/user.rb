@@ -6,12 +6,12 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :encrypted_password,:password,:password_confirmation,length:{minimum:6},format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/}
+    validates :password,:password_confirmation,length:{minimum:6},format:{with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}\z/}
     with_options format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/} do
       validates :last_name
       validates :first_name
     end
-    with_options format: {with:/[^\x01-\x7Eｦ-ﾟ]+/} do
+    with_options format: {with: /\A[ァ-ヶー]+\z/} do
       validates :first_name_kana
       validates :last_name_kana
     end

@@ -93,8 +93,14 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Last name is invalid")
       end
 
-      it '苗字全角カタカナ以外では登録できないこと' do
+      it '苗字が全角カタカナ以外では登録できないこと' do
         @user.last_name_kana = 'ｱｱｱ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      end
+
+      it '苗字が全角平仮名では登録できないこと' do
+        @user.last_name_kana = 'あああ'
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
@@ -119,6 +125,12 @@ RSpec.describe User, type: :model do
 
       it '氏名カナが全角カタカナ以外では登録できないこと' do
         @user.first_name_kana = 'ｱｱｱ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
+
+      it '氏名カナが全角平仮名では登録できないこと' do
+        @user.first_name_kana = 'あああ'
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
