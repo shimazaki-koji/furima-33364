@@ -1,6 +1,9 @@
 class Item < ApplicationRecord
   has_one_attached :image
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :genre
+
   with_options presence: true do
     validates :product_name
     validates :explanatory_text
@@ -10,5 +13,7 @@ class Item < ApplicationRecord
     validates :shipment_id
     validates :days_to_ship_id
     validates :price
+    validates :title, :text
+    validates :genre_id,numericality: { other_than: 1 }
   end
 end
