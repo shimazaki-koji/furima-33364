@@ -2,7 +2,11 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :genre
+  belongs_to_active_hash :category
+  belongs_to_active_hash :item_status
+  belongs_to_active_hash :item_fee
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :scheduled_delivery
 
   with_options presence: true do
     validates :product_name
