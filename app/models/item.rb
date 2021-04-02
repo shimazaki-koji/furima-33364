@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :genre
+  belongs_to_active_hash :genre
 
   with_options presence: true do
     validates :product_name
