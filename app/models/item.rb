@@ -3,10 +3,10 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
-  belongs_to_active_hash :item_status
-  belongs_to_active_hash :item_fee
-  belongs_to_active_hash :prefecture
-  belongs_to_active_hash :scheduled_delivery
+  belongs_to_active_hash :product_condition
+  belongs_to_active_hash :days_to_ship
+  belongs_to_active_hash :shipment
+  belongs_to_active_hash :delivery_fee
 
   with_options presence: true do
     validates :product_name
@@ -17,7 +17,5 @@ class Item < ApplicationRecord
     validates :shipment_id
     validates :days_to_ship_id
     validates :price
-    validates :title, :text
-    validates :genre_id,numericality: { other_than: 1 }
   end
 end
