@@ -16,6 +16,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    if current_user.update(item_params)
+      redirect_to root_path
+    else
+      render :create
+    end
+  end
+
   private
 
   def item_params
