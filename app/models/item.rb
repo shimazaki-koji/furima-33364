@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_fee
 
   with_options presence: true do
+    validates :image, unless: :was_attached?
     validates :product_name
     validates :explanatory_text
     validates :category_id
@@ -16,6 +17,10 @@ class Item < ApplicationRecord
     validates :delivery_fee_id
     validates :shipment_id
     validates :days_to_ship_id
-    validates :price
+    validates :price, inclusion: {in: 333..9999999}
+  end
+  belongs_to :user
+  def was_attached?
+    self.image.attached?
   end
 end
