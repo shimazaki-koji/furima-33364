@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :item do
+    transient do
+    end
     product_name {"hoge"}
     explanatory_text {"fuga"}
     category_id {2}
