@@ -71,6 +71,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
+
+      it "販売価格が¥300〜¥9,999,999の間であること" do
+        @item.price = be_between(300, 9999999).inclusive
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
     end
   end
 end

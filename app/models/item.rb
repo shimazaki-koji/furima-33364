@@ -17,7 +17,7 @@ class Item < ApplicationRecord
     validates :delivery_fee_id
     validates :shipment_id
     validates :days_to_ship_id
-    validates :price, inclusion: {in: 333..9999999}
+    validates :price, inclusion: {in: 300..9999999}, format: {with: /\A[0-9]+\z/}
   end
   belongs_to :user
   def was_attached?

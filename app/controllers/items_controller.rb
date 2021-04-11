@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
 
   def index
-    @itmes = Item.order("created_at DESC")
+    #@itmes = Item.order("created_at DESC")
   end
 
   def new
@@ -18,13 +18,13 @@ class ItemsController < ApplicationController
     end
   end
 
-  def update
-    if current_user.update(item_params)
-      redirect_to root_path
-    else
-      render :create
-    end
-  end
+  #def update
+    #if current_user.update(item_params)
+      #redirect_to root_path
+    #else
+      #render :create
+    #end
+  #end
 
   private
 
