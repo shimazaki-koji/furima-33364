@@ -31,37 +31,37 @@ RSpec.describe Item, type: :model do
       end
 
       it "カテゴリーの情報が必須であること" do
-        @item.category_id = ''
+        @item.category_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it "商品の状態についての情報が必須であること" do
-        @item.product_condition_id = ''
+        @item.product_condition_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Product condition can't be blank")
       end
 
       it "配送料の負担についての情報が必須であること" do
-        @item.delivery_fee_id = ''
+        @item.delivery_fee_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
       end
 
       it "発送元の地域についての情報が必須であること" do
-        @item.shipment_id = ''
+        @item.shipment_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipment can't be blank")
       end
 
       it "発送までの日数についての情報が必須であること" do
-        @item.days_to_ship_id = ''
+        @item.days_to_ship_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship can't be blank")
       end
 
       it "価格についての情報が必須であること" do
-        @item.price = ''
+        @item.price = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
@@ -69,13 +69,25 @@ RSpec.describe Item, type: :model do
       it "販売価格は全角数字では保存できないこと" do
         @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
 
-      it "販売価格が¥300〜¥9,999,999の間であること" do
-        @item.price = be_between(300, 9999999).inclusive
+      it "販売価格が¥300を下回った場合" do
+        @item.price = 100
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      end
+
+      it "販売価格が¥9999999を上回った場合" do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+
+      it "販売価格が整数であるか" do
+        @item.price = 1000.234
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be an integer")
       end
     end
   end
