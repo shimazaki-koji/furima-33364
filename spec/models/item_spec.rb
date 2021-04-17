@@ -31,37 +31,37 @@ RSpec.describe Item, type: :model do
       end
 
       it "カテゴリーの情報が必須であること" do
-        @item.category_id = nil
+        @item.category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it "商品の状態についての情報が必須であること" do
-        @item.product_condition_id = nil
+        @item.product_condition_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Product condition can't be blank")
       end
 
       it "配送料の負担についての情報が必須であること" do
-        @item.delivery_fee_id = nil
+        @item.delivery_fee_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
       end
 
       it "発送元の地域についての情報が必須であること" do
-        @item.shipment_id = nil
+        @item.shipment_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipment can't be blank")
       end
 
       it "発送までの日数についての情報が必須であること" do
-        @item.days_to_ship_id = nil
+        @item.days_to_ship_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship can't be blank")
       end
 
       it "価格についての情報が必須であること" do
-        @item.price = nil
+        @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end

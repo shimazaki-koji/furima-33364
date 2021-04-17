@@ -2,8 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
 
   def index
-    #@itmes = Item.order("created_at DESC")
     @items = Item.all
+    #@delivery_fee = Delivery_fee_id (id: @delivery_fee_id)
   end
 
   def new
