@@ -18,6 +18,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
   # def update
   # if current_user.update(item_params)
   # redirect_to root_path
@@ -29,7 +33,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:id, :image, :product_name, :explanatory_text, :product_condition_id, :delivery_fee_id,
-                                 :shipment_id, :days_to_ship_id, :category_id, :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:id, :image, :product_name, :explanatory_text, :product_condition_id, :delivery_fee_id, :shipment_id, :days_to_ship_id, :category_id, :price).merge(user_id: current_user.id)
   end
 end
