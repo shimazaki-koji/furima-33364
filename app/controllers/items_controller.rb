@@ -22,6 +22,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
   # def update
   # if current_user.update(item_params)
   # redirect_to root_path
