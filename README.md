@@ -52,7 +52,7 @@
 | address        | string     | null: false       |
 | building       | string     |                   |
 | phone_number   | string     | null: false       |
-| buyer          | references | foreign_key: true |
+| order          | references | foreign_key: true |
 
 ### Association
 - belongs_to : order
