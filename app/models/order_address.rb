@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :shipment_id, :city, :address, :building, :phone_number
+  attr_accessor :user_id, :item_id, :postal_code, :shipment_id, :city, :address, :building, :phone_number, :token
 
   with_options presence: true do
     #validates :card_number, format: { with: /^[0-9]*$/}
@@ -14,6 +14,7 @@ class OrderAddress
     validates :phone_number, format: { with: /\A[0-9]+\z/ }
     validates :user_id
     validates :item_id
+    validates :token
   end
   validate :building
 
