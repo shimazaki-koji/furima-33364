@@ -3,10 +3,6 @@ class OrderAddress
   attr_accessor :user_id, :item_id, :postal_code, :shipment_id, :city, :address, :building, :phone_number, :token
 
   with_options presence: true do
-    #validates :card_number, format: { with: /^[0-9]*$/}
-    #validates :exp_month, format: { with: /^[0-9]*$/}
-    #validates :exp_year, format: { with: /^[0-9]*$/}
-    #validates :cvc, format: { with: /^[0-9]*$/}
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)" }
     validates :shipment_id
     validates :city
