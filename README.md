@@ -13,7 +13,7 @@
 
 ### Association
 - has_many : items
-- has_many : buyers
+- has_many : orders
 
 ## itemsテーブル
 | Column               | Type       | Option            |
@@ -30,9 +30,9 @@
 
 ### Association
 - belongs_to : user
-- has_one    : buyer
+- has_one    : order
 
-### buyersテーブル
+### ordersテーブル
 | Column    | Type       | Option            |
 | --------- | ---------- | ----------------- |
 | user      | references | foreign_key: true |
@@ -48,11 +48,11 @@
 | -------------- | ---------- | ----------------- |
 | postal_code    | string     | null: false       |
 | shipment_id    | integer    | null: false       |
-| municipalities | string     | null: false       |
+| city           | string     | null: false       |
 | address        | string     | null: false       |
 | building       | string     |                   |
 | phone_number   | string     | null: false       |
-| buyer          | references | foreign_key: true |
+| order          | references | foreign_key: true |
 
 ### Association
-- belongs_to : buyer
+- belongs_to : order

@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  belongs_to :user
+  has_one :order
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -19,7 +21,7 @@ class Item < ApplicationRecord
     validates :days_to_ship_id
     validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }, format: { with: /\A[0-9]+\z/ }
   end
-  belongs_to :user
+
   def was_attached?
     image.attached?
   end
