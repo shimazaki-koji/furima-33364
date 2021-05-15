@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if @item.user.id
+    unless @item.user.id
       redirect_to action: :index
     end
   end
