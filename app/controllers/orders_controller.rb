@@ -31,9 +31,12 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    unless @item.user
+    unless current_user.id == @item.user
       redirect_to root_path
     end
+    #unless @item.user
+      #redirect_to root_path
+    #end
   end
 
   def move_to_order
